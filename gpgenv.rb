@@ -5,20 +5,20 @@
 class Gpgenv < Formula
   desc ""
   homepage "https://github.com/notfromstatefarm/homebrew-gpgenv"
-  version "1.0.0"
+  version "1.0.1"
 
   on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/notfromstatefarm/gpgenv/releases/download/v1.0.0/gpgenv_1.0.0_Darwin_x86_64.tar.gz"
-      sha256 "838d992d52efede9cdf2b225786a70cb7709d9db3f1880ed47ab305961e18324"
+    if Hardware::CPU.arm?
+      url "https://github.com/notfromstatefarm/gpgenv/releases/download/v1.0.1/gpgenv_1.0.1_Darwin_arm64.tar.gz"
+      sha256 "03ee75826794c95ad4cc5dd5fc5a5e6a3339a235b2a222c9bbbb4ce20aa686f9"
 
       def install
         bin.install "gpgenv"
       end
     end
-    if Hardware::CPU.arm?
-      url "https://github.com/notfromstatefarm/gpgenv/releases/download/v1.0.0/gpgenv_1.0.0_Darwin_arm64.tar.gz"
-      sha256 "ecd3b0bcc7a47edc7aa69f42def4d3958d61771fc0cc2d60308f9c89b9b6ae42"
+    if Hardware::CPU.intel?
+      url "https://github.com/notfromstatefarm/gpgenv/releases/download/v1.0.1/gpgenv_1.0.1_Darwin_x86_64.tar.gz"
+      sha256 "32ce9f4ae77f75e0b11b077666317bee1643d95dd775e736a5e1587491b038b7"
 
       def install
         bin.install "gpgenv"
@@ -27,21 +27,23 @@ class Gpgenv < Formula
   end
 
   on_linux do
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/notfromstatefarm/gpgenv/releases/download/v1.0.0/gpgenv_1.0.0_Linux_arm64.tar.gz"
-      sha256 "0e4c6354e140f4ec8378ab7ea9ae054fda556d0841bd786909c46d24c458a61b"
+    if Hardware::CPU.intel?
+      url "https://github.com/notfromstatefarm/gpgenv/releases/download/v1.0.1/gpgenv_1.0.1_Linux_x86_64.tar.gz"
+      sha256 "42983fef8e757e94ad498a00ee3b6f66b81f9bb2f1fb4c033e9912a32028df32"
 
       def install
         bin.install "gpgenv"
       end
     end
-    if Hardware::CPU.intel?
-      url "https://github.com/notfromstatefarm/gpgenv/releases/download/v1.0.0/gpgenv_1.0.0_Linux_x86_64.tar.gz"
-      sha256 "b4f4e2a66e2fd1dac9aac9d4ad3ef521b8d95e9fa3be5b1147b5d1d2ca751ac6"
+    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+      url "https://github.com/notfromstatefarm/gpgenv/releases/download/v1.0.1/gpgenv_1.0.1_Linux_arm64.tar.gz"
+      sha256 "a902c80e52f3fc0570c0173b1f28a16fd974868fc52713fd02284e7f5403ed34"
 
       def install
         bin.install "gpgenv"
       end
     end
   end
+
+  depends_on "gpg"
 end
